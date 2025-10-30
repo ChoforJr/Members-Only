@@ -1,0 +1,37 @@
+{
+  "name": "template-expressjs",
+  "version": "1.2.0",
+  "description": "Template for my Express JS projects",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "populatedb": "node db/populatedb.js",
+    "cleardb": "node db/cleardb.js"
+  },
+  "keywords": [],
+  "author": "FORSAKANG CHOFOR JUNIOR",
+  "license": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.2.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/connect-pg-simple": "^7.0.3",
+    "@types/express": "^5.0.3",
+    "@types/express-session": "^1.18.2",
+    "@types/passport": "^1.0.17",
+    "@types/passport-local": "^1.0.38",
+    "@types/pg": "^8.15.5",
+    "ejs-lint": "^2.0.1"
+  }
+}
