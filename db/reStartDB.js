@@ -7,15 +7,9 @@ import path from "path";
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
 const SQL = `
-DROP TABLE IF EXISTS games_devs;
+DELETE FROM users;
 
-DROP TABLE IF EXISTS games_genres ;
-
-DROP TABLE IF EXISTS games;
-
-DROP TABLE IF EXISTS developers ;
-
-DROP TABLE IF EXISTS genres;
+DELETE FROM messages;
 `;
 
 async function main() {

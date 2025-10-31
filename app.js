@@ -5,6 +5,7 @@ import Pool from "./db/pool.js";
 import session from "express-session";
 import passport from "passport";
 import createSessionStore from "connect-pg-simple";
+import dotenv from "dotenv";
 import "./config/passport.js";
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });

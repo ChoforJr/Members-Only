@@ -1,7 +1,9 @@
 import { Router } from "express";
-import { homePageGet } from "../controllers/readDB.js";
+import { homePageGet, signUpPageGet } from "../controllers/readDB.js";
 
 const indexRouter = Router();
+
+indexRouter.get("/sign-up", signUpPageGet);
 
 indexRouter.get("/", homePageGet);
 

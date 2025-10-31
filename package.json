@@ -1,14 +1,14 @@
 {
-  "name": "template-expressjs",
+  "name": "members-only",
   "version": "1.2.0",
-  "description": "Template for my Express JS projects",
+  "description": "This app is built for me to practice and showcase my authentication skills (only using local strategy for now)",
   "main": "app.js",
   "type": "module",
   "scripts": {
     "start": "node app.js",
     "dev": "node --watch app.js",
     "populatedb": "node db/populatedb.js",
-    "cleardb": "node db/cleardb.js"
+    "reStartdb": "node db/reStartDB.js"
   },
   "keywords": [],
   "author": "FORSAKANG CHOFOR JUNIOR",

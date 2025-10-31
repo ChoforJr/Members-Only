@@ -7,66 +7,22 @@ import path from "path";
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
 const SQL = `
-CREATE TABLE IF NOT EXISTS developers (
+CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  dev VARCHAR ( 255 ),
-  found_year INTEGER
+  username VARCHAR ( 255 ),
+  fullname VARCHAR ( 255 ),
+  password VARCHAR ( 255 ),
+  is_admin BOOLEAN DEFAULT FALSE,
+  is_member BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE IF NOT EXISTS genres (
+CREATE TABLE IF NOT EXISTS messages (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  genre VARCHAR ( 255 )
+  text VARCHAR ( 255 ),
+  title VARCHAR ( 255 ),
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  author INTEGER REFERENCES users (id) ON DELETE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS games (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  game VARCHAR ( 255 ),
-  res_year INTEGER,
-  main_dev INTEGER REFERENCES developers (id) ON DELETE CASCADE,
-  main_genre INTEGER REFERENCES genres (id) ON DELETE CASCADE,
-  sales_in_millions INTEGER
-);
-
-CREATE TABLE IF NOT EXISTS games_devs (
-  game_id INTEGER REFERENCES games (id) ON DELETE CASCADE,
-  dev_id INTEGER REFERENCES developers (id) ON DELETE CASCADE,
-  PRIMARY KEY (game_id, dev_id)
-);
-
-CREATE TABLE IF NOT EXISTS games_genres (
-  game_id INTEGER REFERENCES games (id) ON DELETE CASCADE,
-  genre_id INTEGER REFERENCES genres (id) ON DELETE CASCADE,
-  PRIMARY KEY (game_id, genre_id)
-);
-
-BEGIN;
-
-INSERT INTO developers (dev, found_year) 
-VALUES
-  ('Capcom', 1985),
-  ('Nintendo', 1986),
-  ('Insomiac', 2010);
-
-INSERT INTO genres (genre) 
-VALUES
-  ('Adventure'),
-  ('Action'),
-  ('Horror');
-
-INSERT INTO games (game, res_year, main_dev, main_genre, sales_in_millions) 
-VALUES
-  ('Resident Evil 4 Remake', 2022, 1, 3, 1300),
-  ('Resident Evil 2 Remake', 2021, 1, 3, 1300),
-  ('Mario Cart 2', 2025, 2, 1, 400),
-  ('Spider Man PS4', 2018, 3, 2, 1300);
-
-INSERT INTO games_devs (game_id, dev_id) 
-VALUES (1, 1), (2, 1), (3, 2), (4, 3);
-
-INSERT INTO games_genres (game_id, genre_id) 
-VALUES (1, 3), (1, 2), (1, 1), (2, 3), (2, 2), (2, 1), (3, 1), (4, 1), (4, 2);
-
-COMMIT;
 `;
 
 async function main() {

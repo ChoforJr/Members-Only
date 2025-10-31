@@ -1,6 +1,6 @@
-# template-expressjs
+# members-only
 
-Template for my Express JS projects
+- This app is built for me to practice and showcase my authentication skills (only using local strategy for now)
 
 # Author : FORSAKANG CHOFOR JUNIOR
 
@@ -22,7 +22,10 @@ match you database and you use case.
 # For using connect-pg-simple
 
 Run the following command in your terminal to create the table in your PostgreSQL database (mydatabase should be replaced with your actual database name):
-psql mydatabase < node_modules/connect-pg-simple/table.sql
+
+- psql mydatabase < node_modules/connect-pg-simple/table.sql OR
+- # Replace <YOUR_NEON_CONNECTION_STRING> with the full URL you copied from you database like neon
+- psql <YOUR_NEON_CONNECTION_STRING> < node_modules/connect-pg-simple/table.sql
 
 # Run the command below in your terminal to genrate a key for
 
