@@ -33,3 +33,9 @@ export async function newMsgPageGet(req, res) {
     text: "",
   });
 }
+
+export async function codePageGet(req, res) {
+  res.render("join", {
+    code: "",
+  });
+}

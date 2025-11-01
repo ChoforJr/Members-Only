@@ -5,6 +5,7 @@ import {
   signUpPageGet,
   logInPageGet,
   newMsgPageGet,
+  codePageGet,
 } from "../controllers/readDB.js";
 import { addNewUser, addNewMessage } from "../controllers/postToDB.js";
 import {
@@ -20,6 +21,11 @@ import {
   checkMessageValidationResult,
 } from "../controllers/validations/validateMessege.js";
 import { delMessage } from "../controllers/deleteFromDB.js";
+import {
+  validateCode,
+  checkCodeValidationResult,
+} from "../controllers/validations/validateCode.js";
+import { becomeMember } from "../controllers/putToDB.js";
 
 const indexRouter = Router();
 
@@ -48,6 +54,14 @@ indexRouter.post(
     successRedirect: "/",
     failureRedirect: "/log-in",
   })
+);
+
+indexRouter.get("/join", codePageGet);
+indexRouter.post(
+  "/join",
+  validateCode,
+  checkCodeValidationResult,
+  becomeMember
 );
 
 indexRouter.get("/log-out", (req, res, next) => {
