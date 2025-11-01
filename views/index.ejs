@@ -26,8 +26,7 @@
     <main>
       <h1>Messages</h1>
       <% if ( messages && messages.length > 0 ) {%> <%
-      messages.forEach((message,index) => { %> <% if ( currentUser.is_member ==
-      true ) {%>
+      messages.forEach((message,index) => { %> <% if ( currentUser ) {%>
       <article>
         <div class="messages author">Author: <%= message.author %></div>
         <div class="messages title">Title: <%= message.title %></div>
@@ -47,11 +46,6 @@
         <div class="messages title">Title: <%= message.title %></div>
         <div class="messages timeStamp">TimeStamp: unknown</div>
         <div class="messages message">Message: <%= message.text %></div>
-        <% if (currentUser.is_admin == true) { %>
-        <form action="/delMsg/<%= message.id %>" method="post">
-          <button type="submit" class="delMsg">Delete</button>
-        </form>
-        <% } %>
       </article>
       <%}%> <% }) %> <% } else { %>
       <h2>No message available, You should create one</h2>
