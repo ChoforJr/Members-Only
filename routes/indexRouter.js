@@ -20,7 +20,7 @@ import {
   validateMessageRules,
   checkMessageValidationResult,
 } from "../controllers/validations/validateMessege.js";
-import { delMessage } from "../controllers/deleteFromDB.js";
+import { delMessage, toDefault } from "../controllers/deleteFromDB.js";
 import {
   validateCode,
   checkCodeValidationResult,
@@ -63,6 +63,15 @@ indexRouter.post(
   checkCodeValidationResult,
   becomeMember
 );
+
+indexRouter.post("/default", toDefault, (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+});
 
 indexRouter.get("/log-out", (req, res, next) => {
   req.logout((err) => {

@@ -9,3 +9,12 @@ export async function removeMessage(params) {
     [params]
   );
 }
+
+export async function clearTables() {
+  await Pool.query(
+    `
+     TRUNCATE users RESTART IDENTITY CASCADE;
+          
+    `
+  );
+}

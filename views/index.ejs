@@ -7,6 +7,11 @@
       <nav>
         <% if ( currentUser ) {%>
         <h1>WELCOME BACK <%= currentUser.fullname %></h1>
+        <% if (currentUser.is_admin == true) { %>
+        <form action="/default" method="post">
+          <button type="submit" class="default">Reset to Default</button>
+        </form>
+        <% } %>
         <ul>
           <li><a href="/log-out">Log-Out</a></li>
           <li><a href="/create-new-message">Create New Message</a></li>
@@ -28,10 +33,14 @@
       <% if ( messages && messages.length > 0 ) {%> <%
       messages.forEach((message,index) => { %> <% if ( currentUser ) {%>
       <article>
-        <div class="messages author">Author: <%= message.author %></div>
+        <div class="messages author">
+          Author: <%= currentUser.is_member == true ? message.author :
+          'anonymousUser'+index %>
+        </div>
         <div class="messages title">Title: <%= message.title %></div>
         <div class="messages timeStamp">
-          TimeStamp: <%= message.created_at %>
+          TimeStamp: <%= currentUser.is_member == true ? message.created_at :
+          'unknown' %>
         </div>
         <div class="messages message">Message: <%= message.text %></div>
         <% if (currentUser.is_admin == true) { %>
