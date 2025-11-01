@@ -25,8 +25,9 @@
     </aside>
     <main>
       <h1>Messages</h1>
-      <% if ( messages ) {%> <% messages.forEach((message,index) => { %> <% if (
-      currentUser.is_member == true ) {%>
+      <% if ( messages && messages.length > 0 ) {%> <%
+      messages.forEach((message,index) => { %> <% if ( currentUser.is_member ==
+      true ) {%>
       <article>
         <div class="messages author">Author: <%= message.author %></div>
         <div class="messages title">Title: <%= message.title %></div>
@@ -35,9 +36,9 @@
         </div>
         <div class="messages message">Message: <%= message.text %></div>
         <% if (currentUser.is_admin == true) { %>
-        <button class="delMsg" id="<%= message.id %>">
-          <a href="/delMsg">Delete</a>
-        </button>
+        <form action="/delMsg/<%= message.id %>" method="post">
+          <button type="submit" class="delMsg">Delete</button>
+        </form>
         <% } %>
       </article>
       <% } else { %>
@@ -47,13 +48,13 @@
         <div class="messages timeStamp">TimeStamp: unknown</div>
         <div class="messages message">Message: <%= message.text %></div>
         <% if (currentUser.is_admin == true) { %>
-        <button class="delMsg" id="<%= message.id %>">
-          <a href="/delMsg">Delete</a>
-        </button>
+        <form action="/delMsg/<%= message.id %>" method="post">
+          <button type="submit" class="delMsg">Delete</button>
+        </form>
         <% } %>
       </article>
       <%}%> <% }) %> <% } else { %>
-      <h1>No message available, You should create one</h1>
+      <h2>No message available, You should create one</h2>
       <%}%>
     </main>
   </body>

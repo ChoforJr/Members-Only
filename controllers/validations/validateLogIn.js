@@ -5,7 +5,7 @@ export const validateLogInRules = [
     .trim()
     .isEmail()
     .withMessage("Email: Should be an email")
-    .isLength({ min: 8, max: 64 })
+    .isLength({ min: 8, max: 250 })
     .withMessage("Email: Has to have a length of between 8 and 250"),
   body("password")
     .trim()

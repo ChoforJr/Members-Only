@@ -1,11 +1,12 @@
 import { getMessages } from "../db/queriesGet.js";
 
 export async function homePageGet(req, res) {
+  const messages = await getMessages();
   res.render("index", {
     script: "index.js",
     style: "style.css",
     currentUser: req.user,
-    messages: (await getMessages()) || null,
+    messages: messages,
   });
 }
 
@@ -23,5 +24,12 @@ export async function logInPageGet(req, res) {
   res.render("logIn", {
     username: "",
     password: "",
+  });
+}
+
+export async function newMsgPageGet(req, res) {
+  res.render("newMessage", {
+    title: "",
+    text: "",
   });
 }

@@ -4,8 +4,9 @@ import {
   homePageGet,
   signUpPageGet,
   logInPageGet,
+  newMsgPageGet,
 } from "../controllers/readDB.js";
-import { addNewUser } from "../controllers/postToDB.js";
+import { addNewUser, addNewMessage } from "../controllers/postToDB.js";
 import {
   checkValidationResult,
   validateSignUpRules,
@@ -14,6 +15,11 @@ import {
   validateLogInRules,
   checkLoginValidationResult,
 } from "../controllers/validations/validateLogIn.js";
+import {
+  validateMessageRules,
+  checkMessageValidationResult,
+} from "../controllers/validations/validateMessege.js";
+import { delMessage } from "../controllers/deleteFromDB.js";
 
 const indexRouter = Router();
 
@@ -23,6 +29,14 @@ indexRouter.post(
   validateSignUpRules,
   checkValidationResult,
   addNewUser
+);
+
+indexRouter.get("/create-new-message", newMsgPageGet);
+indexRouter.post(
+  "/create-new-message",
+  validateMessageRules,
+  checkMessageValidationResult,
+  addNewMessage
 );
 
 indexRouter.get("/log-in", logInPageGet);
@@ -44,6 +58,8 @@ indexRouter.get("/log-out", (req, res, next) => {
     res.redirect("/");
   });
 });
+
+indexRouter.post("/delMsg/:id", delMessage);
 
 indexRouter.get("/", homePageGet);
 
