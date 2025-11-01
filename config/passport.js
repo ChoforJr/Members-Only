@@ -5,7 +5,7 @@ import { getUserInfoByUsername, getUserInfoByID } from "../db/queriesGet.js";
 
 async function verifyCallback(username, password, done) {
   try {
-    const rows = await getUserInfoByUsername(username);
+    const rows = await getUserInfoByUsername(username.toLowerCase());
     const user = rows[0];
 
     if (!user) {

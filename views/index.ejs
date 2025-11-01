@@ -25,6 +25,36 @@
     </aside>
     <main>
       <h1>Messages</h1>
+      <% if ( messages ) {%> <% messages.forEach((message,index) => { %> <% if (
+      currentUser.is_member == true ) {%>
+      <article>
+        <div class="messages author">Author: <%= message.author %></div>
+        <div class="messages title">Title: <%= message.title %></div>
+        <div class="messages timeStamp">
+          TimeStamp: <%= message.created_at %>
+        </div>
+        <div class="messages message">Message: <%= message.text %></div>
+        <% if (currentUser.is_admin == true) { %>
+        <button class="delMsg" id="<%= message.id %>">
+          <a href="/delMsg">Delete</a>
+        </button>
+        <% } %>
+      </article>
+      <% } else { %>
+      <article>
+        <div class="messages author">Author: anonymousUser<%= index %></div>
+        <div class="messages title">Title: <%= message.title %></div>
+        <div class="messages timeStamp">TimeStamp: unknown</div>
+        <div class="messages message">Message: <%= message.text %></div>
+        <% if (currentUser.is_admin == true) { %>
+        <button class="delMsg" id="<%= message.id %>">
+          <a href="/delMsg">Delete</a>
+        </button>
+        <% } %>
+      </article>
+      <%}%> <% }) %> <% } else { %>
+      <h1>No message available, You should create one</h1>
+      <%}%>
     </main>
   </body>
 </html>
