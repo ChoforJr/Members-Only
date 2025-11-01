@@ -24,35 +24,17 @@ app.use(express.urlencoded({ extended: true }));
 const PgSessionStore = createSessionStore(session);
 const sessionStore = new PgSessionStore({
   pool: Pool,
-  tableName: "session", // Default table name is 'session'
-  // Recommended for development, but consider running table.sql manually for production
-  createTableIfMissing: () => {
-    if (process.env.NODE_ENV === "dev") {
-      return false;
-    } else if (process.env.NODE_ENV === "prod") {
-      return true;
-    }
-  },
+  tableName: "session",
 });
 
-// 2. Configure Express Session Middleware
-// -------------------------------------
 app.use(
   session({
-    store: sessionStore, // <-- THIS is where your PostgreSQL store is used
-    secret: process.env.SESSION_SECRET, // Required: Used to sign the session ID cookie
-    resave: false, // Recommended: Don't save session if not modified
-    saveUninitialized: false, // Recommended: Don't create a session until something is stored
+    store: sessionStore,
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
-      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
-      secure: () => {
-        // Set to true if you are using HTTPS
-        if (process.env.NODE_ENV === "dev") {
-          return false;
-        } else if (process.env.NODE_ENV === "prod") {
-          return true;
-        }
-      },
+      maxAge: 30 * 24 * 60 * 60 * 1000,
     },
   })
 );

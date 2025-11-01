@@ -1,7 +1,7 @@
 import { compare } from "bcryptjs";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import { getUserInfoByUsername } from "../db/queriesGet.js";
+import { getUserInfoByUsername, getUserInfoByID } from "../db/queriesGet.js";
 
 async function verifyCallback(username, password, done) {
   try {

@@ -5,8 +5,8 @@
     <aside>
       <p>Code: 2025</p>
       <nav>
-        <% if (currentUser) {%>
-        <h1>WELCOME BACK <%= currentUser.username %></h1>
+        <% if ( currentUser ) {%>
+        <h1>WELCOME BACK <%= currentUser.fullname %></h1>
         <ul>
           <li><a href="/log-out">Log-Out</a></li>
           <li><a href="/create-new-message">Create New Message</a></li>

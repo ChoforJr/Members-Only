@@ -6,7 +6,7 @@ export const validateSignUpRules = [
     .trim()
     .isEmail()
     .withMessage("Email: Should be an email")
-    .isLength({ min: 2, max: 64 })
+    .isLength({ min: 8, max: 64 })
     .withMessage("Email: Has to have a length of between 8 and 250")
     .custom(async (value) => {
       const rows = await getUserInfoByUsername(value);
